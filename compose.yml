@@ -1,0 +1,48 @@
+services:
+  kobuki-base-arm64:
+    platform: "linux/arm64"
+    # just the basic robot (headless, includes drivers, publishes description) for the robots raspberry pi
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      platforms:
+        - "linux/arm64"
+      args:
+        ROS_DISTRO: jazzy
+        ARCH: arm64
+        UBUNTU: noble
+    environment:
+      - PYTHONUNBUFFERED=1 # important to show error messages if a ros service crashes!
+    privileged: True
+    image: brean/kobuki-base:jazzy_arm64_001
+    volumes:
+      - ./roslog:/root/.ros/
+      - /dev:/dev
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    devices:
+      - /dev/bus/usb/
+    network_mode: host
+
+  kobuki-base-amd64:
+    platform: "linux/amd64"
+    # just the basic robot (headless, includes drivers, publishes description) for the robots raspberry pi
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      platforms:
+        - "linux/amd64"
+      args:
+        ROS_DISTRO: jazzy
+        ARCH: amd64
+        UBUNTU: noble
+    environment:
+      - PYTHONUNBUFFERED=1 # important to show error messages if a ros service crashes!
+    privileged: True
+    image: brean/kobuki-base:jazzy_amd64_001
+    volumes:
+      - ./roslog:/root/.ros/
+      - /dev:/dev
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    devices:
+      - /dev/bus/usb/
+    network_mode: host
