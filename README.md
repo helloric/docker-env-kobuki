@@ -21,6 +21,8 @@ Now you can control your robot on from your PC by running `ros2 run rqt_robot_st
 
 It's recommended to start by rotating slowly on the spot instead of moving forward/backward right away.
 
+Alternatively put the robot on a box so the wheels spin in the air so its safe to control.
+
 For quicker demo testing, try to send commands directly:
 
 ```bash
